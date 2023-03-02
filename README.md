@@ -1,5 +1,5 @@
 # Python-turtle-hearts
-  # Valentines day and you got no idea what to gift ? Your gf/bf is already mad ? 
+  # Valentines day and you got no idea what to gift ? Your gf / bf is already mad ? 
   # I got u! 
   # Copy the code and let it run. Due to its duration time, your lover will not be able to wait anymore.
   # When the background is finished, the real cute stuff will start to create itself. 
