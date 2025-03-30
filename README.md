@@ -1,129 +1,80 @@
-# Python-turtle-hearts
-  # Valentines day and you got no idea what to gift ? Your gf / bf is already mad ? 
-  # I got u! 
-  # Copy the code and let it run. Due to its duration time, your lover will not be able to wait anymore.
-  # When the background is finished, the real cute stuff will start to create itself. 
-  # The psychological illusion of waiting, lets the oponent value the 'price' much more.
+# Python Turtle Hearts
 
+Celebrate Valentine's Day with a unique, coded gift using Python's Turtle graphics. This script creates a hypnotizing animation that culminates in a warm message, offering a creative way to express your affection.
 
-  So here some tips for dudes who like to custom or just do not like the original :
-  
-   There are actually two lines with different values, one is more violet another is more blue 
-   Together they create am effect of a beautiful doubled gradient bg
-   You can experiment with the colours and change them to your likes 
-   You can also change the visual of the gradient and make it more visible --> go to line 30 step =... (n-1)<- change the number (only int numbers fit)
+## Overview
 
-__________________________________________________________________________________________
-```
-import turtle
-import random
-import colorsys
+The script uses Python's Turtle module to draw a dynamic background very slowly, which only accumulates the feeling of joy while waiting for the main part. followed by a series of heart shapes and a customizable message.
 
-def draw_square(x, y, color):
-    turtle.penup()
-    turtle.goto(x, y)
-    turtle.pendown()
-    turtle.fillcolor(color)
-    turtle.begin_fill()
-    for i in range(4):
-        turtle.forward(20)
-        turtle.right(90)
-    turtle.end_fill()
-    
-def color_range(start, end, n):
-    start_rgb = colorsys.rgb_to_hsv(*start)
-    end_rgb = colorsys.rgb_to_hsv(*end)
-    step = [(end_rgb[i] - start_rgb[i]) / (n-1) for i in range(3)] # change the steps of the gradient effect
-    return [colorsys.hsv_to_rgb(*[start_rgb[i] + step[i] * j for i in range(3)]) for j in range(n)]
-    
-colors_1 = color_range((.56, 0, 1), (0.56, 0, 0.88), 20)   # --> change the colours for the gradient 
-colors_2 = color_range((0.56, 0, 0.88), (0.6, 0.47, 1), 20) # --> second colours line for the gradient 
-colors = []
-for i in range(20): # change the quantity of lines 
-    colors += color_range(colors_1[i], colors_2[i], 2)
+## Features
 
-turtle.speed(0) # change the speed (set to the fastest)
-turtle.penup()
-turtle.goto(-300, 300)
-turtle.pendown()
-for i, color in enumerate(colors):
-    if i >= 30:
-        break
-    for j in range(30):
-        draw_square(j * 20 - 300, 300 - i * 20, color) 
+- **Gradient Background**: A double-gradient effect achieved by blending two color ranges, creating a visually appealing backdrop.
+- **Heart Shapes**: Sequentially drawn hearts that symbolize your feelings.
+- **Customizable Message**: Personalize the final text on the heart shapes to address the message.
 
-def draw_text(text):
-    turtle.shape("turtle") # change the shape of the cursor
-    turtle.speed(0) # change the speed for the figure  
-    turtle.shapesize(2, 2) 
-    turtle.penup()
-    turtle.goto(0, 0)
-    turtle.pendown()
-    turtle.color((0, .29, .29), (0.85, 0.2, 0.53)) # change the colourlines for the figure, first for the contouring, second line filling 
-    turtle.begin_fill()
-    for i in range(36):
-        turtle.right(10)
-        turtle.forward(300)
-        turtle.right(120)
-        turtle.forward(300)
-        turtle.right(120)
-        turtle.forward(300)
-    turtle.end_fill()
+## Customization Guide
 
-    turtle.color((1, .99, .82), (0.64, 0, 0)) # change the colours for the Valintene's hearts 
-    turtle.pensize(3.5)
-    turtle.begin_fill()
-    turtle.left(225)
-    turtle.forward(180)
-    turtle.circle(90,
-            extent=180)
-    turtle.left(270)
-    turtle.circle(90,
-            extent = 180)
-    turtle.forward(180)
+To change the script to your preferences, consider adjusting the following parameters:
 
-    turtle.forward(180)
-    turtle.circle(90,
-            extent=180)
-    turtle.right(90)
-    turtle.circle(90,
-            extent = 180)
-    turtle.forward(180)
-    turtle.forward(180)
-    turtle.circle(90,
-            extent=180)
-    turtle.right(90)
-    turtle.circle(90,
-            extent = 180)
+- **Gradient Colors**: Modify the `colors_1` and `colors_2` variables to change the gradient hues. Each represents a color range in HSV format.
 
-    turtle.forward(180)
-    turtle.forward(180)
-    turtle.circle(90,
-            extent=180)
-    turtle.right(90)
-    turtle.circle(90,
-            extent = 180)
-    turtle.forward(180)
-    turtle.end_fill()
-    turtle.goto(0,0)
-    turtle.shapesize(1,1)
-    turtle.goto(0, -10)
-    turtle.right(45 + 90)
-    
-    turtle.penup()
-    turtle.goto(0, -5)
-    turtle.pendown()
-    turtle.color((0.5,0.09,0.09),(1, .99, .82)) # change the text colour 
-    turtle.write(text, align="center", font=("Fixedsys", 20, "normal")) # change the text font and size
+  ```python
+  colors_1 = color_range((0.56, 0, 1), (0.56, 0, 0.88), 20)
+  colors_2 = color_range((0.56, 0, 0.88), (0.6, 0.47, 1), 20)
+  ```
 
-draw_text('''your   custom  text
-               ❤️''') # insert your text, experiment with positioning and so on (sry for that, might be a bit hard :/ )
-turtle.goto(0,-5)
-turtle.done()
-```
-________________________________________________________________________________________________________
+- **Gradient Visibility**: Alter the `step` value in the `color_range` function to adjust the gradient's prominence. A smaller step increases gradient visibility.
 
-# congrats, now you can enjoy the smile of your lover, and chill out a year, maybe i will do something simillar for the next valentine's day
-# I will also post a version where there is no psychological effects, only fast drawings 
-# and in the file 'Sample' you'll be able to see, how it will look
-# Thanks for attention 
+  ```python
+  step = [(end_rgb[i] - start_rgb[i]) / (n-1) for i in range(3)]
+  ```
+
+- **Drawing Speed**: Set the Turtle's speed using `turtle.speed()`. The maximum speed is 0.
+
+  ```python
+  turtle.speed(0)
+  ```
+
+- **Cursor Shape and Size**: Change the Turtle's appearance with `turtle.shape()` and `turtle.shapesize()`.
+
+  ```python
+  turtle.shape("turtle")
+  turtle.shapesize(2, 2)
+  ```
+
+- **Colors of Shapes and Text**: Customize the colors of the hearts and text by adjusting the `turtle.color()` parameters.
+
+  ```python
+  turtle.color((0, 0.29, 0.29), (0.85, 0.2, 0.53))  # Contour and fill colors
+  ```
+
+- **Text Content and Font**: Personalize the message and its appearance by modifying the `draw_text` function call. (most important customization part, please do not forget)
+
+  ```python
+  draw_text('Your custom text\n❤️')
+  ```
+
+## Usage
+
+1. **Install Python**: Ensure Python is installed on your system.
+2. **Run the Script**: Execute the script in a Python environment that supports Turtle graphics.
+3. **Enjoy the Animation**: Watch as the background and hearts are drawn, culminating in your personalized message.
+
+## Sample Output
+
+For a preview of the final animation, refer to the `Sample` file included in this repository.
+
+## Upcoming Versions
+
+Future iterations of this script may include:
+
+- **Faster Rendering**: An option to bypass the gradual drawing for an immediate display.
+- **Enhanced Customization**: Additional parameters for more personalized animations.
+
+## Acknowledgments
+
+Thank you for exploring this creative coding project. I wish you lots of joy and hope, that it will impress you and your loved one this Valentine's Day.
+
+#### Remarks
+> This project is pure open-source and you are free to use it
+> If you encounter bugs or have suggestions, please let me know via a descriptive pull request
